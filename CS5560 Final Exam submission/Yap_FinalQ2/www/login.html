@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <title>Stock Ticker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/libs/jquery-mobile/images/icons-png/jquery/jquery.js" type="text/javascript"></script>
+        <link href="js/libs/jquery-mobile/images/icons-png/jquery-mobile/jquery.mobile.css" rel="stylesheet" type="text/css"/>
+        <link href="js/libs/jquery-mobile/images/icons-png/jquery-mobile/jquery.mobile.theme.css" rel="stylesheet" type="text/css"/>
+        <script src="js/libs/jquery-mobile/images/icons-png/jquery-mobile/jquery.mobile.js" type="text/javascript"></script>
+        <link href="js/libs/jquery-mobile/images/icons-png/jquery-mobile/jquery.mobile.icons.css" rel="stylesheet" type="text/css"/>
+       <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+       
+        <section data-role="page" id="login">
+            <div data-role="controlgroup" data-type="verticle" >
+                <h1><font color="blue">Your trusted stock ticker services</font></h1>
+            
+                <img src="img/secure.gif" alt="" height="100" width="200"/>
+               
+                <p>Username</p> <input type="text" id="uName"> 
+                <p>Password:</p><input type="password" id="pwd"> <br/>
+
+                <a data-role="button" onclick="userLogin()">Login</a>
+                
+                <p>Not a member?</p><a data-role="button" href="#userRegister">Register Now</a>
+            </div>
+        </section>
+        
+
+        <section data-role="page" id="userRegister">
+            <div data-role="controlgroup" data-type="verticle">
+
+                Username:
+                <input type="text" id="createUsername" required>
+                Password:
+                <input type="password" id="createPass" required>
+                Verify Password:
+                <input type="password" id="verifyPass" required>
+
+                <a data-role="button" onclick="createUser()">Create</a>
+                <a data-role="button" href="#login">Existing User?</a>
+
+            </div>
+        </section>
+
+        <section data-role="page" id="stockQuote">
+            <div data-role="controlgroup" data-type="verticle">
+                Search for your stock:-
+                <a href="#login" style="float:right">Logout </a>
+                <input type="text" id="stockName" >
+                <input type="button" onClick="getData();" value="Submit"></button>
+                <input type="text" id="result" readonly>
+                <div id="img"><img src="img/stock.gif" alt="" /></div>
+
+            </div>
+        </section>
+
+        <script type="text/javascript">
+            function init() {
+                document.addEventListener("deviceready", start, false);
+            }
+            function start() {
+                document.location.href = "#login";
+            
+            }
+
+            function userLogin()
+            {
+                if (typeof(Storage) !== "undefined")
+                {
+                    if (localStorage.getItem("username") === document.getElementById("uName").value)
+                    {
+                        if (localStorage.getItem("password") === document.getElementById("pwd").value)
+                        {
+                            document.location.href = "#stockQuote";
+                        }
+                        else
+                        {
+                            alert("Try again");
+                            document.location.href = "#login";
+                        }
+                    } else {
+                        alert("Username and Password not found in dataStorage!");
+                        document.location.href = "#login";
+                    }
+
+                }
+                else {
+                    alert("Please try to login again");
+                    document.location.hreg = "#login";
+                }
+            }
+            
+            function createUser() {
+                if(typeof(Storage) !=="undefined"){
+                   
+                    if(document.getElementById("createPass").value === document.getElementById("verifyPass").value){
+                        localStorage.setItem("username", document.getElementById("createUsername").value);
+                        localStorage.setItem("password", document.getElementById("createPass").value);
+                       alert("Account created and saved to localStorage"); 
+                        document.location.href = "#login";
+                    }
+                    else {
+                        alert("Password does not match");
+                        document.location.href = "#userRegister";
+                    }
+                }
+                 else {
+                     alert("Please try again");
+                     document.location.href = "#userRegister";
+                 }
+            }
+            
+    function getData() {
+    var url = "http://query.yahooapis.com/v1/public/yql";
+    var symbol = $("#stockName").val();
+    var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
+
+    $.getJSON(url, 'q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
+        .done(function (data) {
+        $("#result").val("Latest Price: " + data.query.results.quote.LastTradePriceOnly);
+    })
+        .fail(function (jqxhr, textStatus, error) {
+        var err = textStatus + ", " + error;
+            $("#result").text('Request failed: ' + err);
+    });
+}
+        </script>
+    </body>
+</html>
