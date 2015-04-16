@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Album</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form enctype="multipart/form-data">
+
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                        View Your Images Below
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                        Done By Kelvin Yap
+                    </p:layoutUnit>
+
+  <p:layoutUnit position="west" size="175" header="Resources" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="Link">
+                                <p:menuitem value="Upload Picture" url="./faces/upload.xhtml" />
+                               
+
+                            </p:submenu>
+
+
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+
+
+                        <p:panel header="Images Album">
+
+
+                            <p:tab id="View">  
+                                <table border="1" style="width:600px">
+                                    <tr>
+                                        <td>
+                                    <h:graphicImage value="./images/1.jpg" width="200" height="100"></h:graphicImage>
+                                    </td>
+                                    <td>
+                                    <h:graphicImage value="./images/2.jpg" width="200" height="100"></h:graphicImage>
+                                    </td>		
+
+                                    </tr>
+                                    
+                                    <tr>
+                                     <td>
+                                    <h:graphicImage value="./images/3.jpg" width="200" height="100"></h:graphicImage>
+                                    </td>
+                                    <td> 
+                                    <h:graphicImage value="./images/4.jpg" width="200" height="100"></h:graphicImage>
+                                    </td>		
+
+                                    </tr>
+
+                                </table>
+
+                            </p:tab>
+
+
+                        </p:panel>
+
+
+                    </p:layoutUnit>
+
+                </p:layout>
+
+            </h:form>
+        </h:body>
+    </f:view>
+
+</html>
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CS5560 Q2 - Temperature Conversion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/converter.js" type="text/javascript"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        
+        
+    </head>
+    <body>
+        
+ <div id="page">  
+ <div id="title">    
+<label>Temperature Converter </label> </div>
+        
+ 
+<form name="MainForm" align="center">
+<div class="row"> 
+ <div class="col-xs-4" align="left">
+       <label>Convert: </label>
+    <input type="text" id="what" name="what" class="form-control" placeholder="Enter input.. ">
+  </div>
+    </div>
+        
+  <div align="left">
+  <table border="0">
+      
+  <tr>
+      
+      
+  <td> <label> From: </label><br>
+      <form name="from" size="5" onclick="myCon()">
+           <input type="radio" name="fromCh" value="0" id="°C">Celsius<br>
+            <input type="radio" name="fromCh" value="1" id="°F">Fahrenheit<br>
+             <input type="radio" name="fromCh" value="4" id="K">Kelvin<br>
+              <input type="radio" name="fromCh" value="3" id="°R">Rankine<br>
+
+          </form></td>
+      
+        <td> <b>To: </b> <br>
+      <form name="to" size="5" onclick="myCon()">
+            <input type="radio" name="toCh" value="0" id="°C">Celsius<br>
+            <input type="radio" name="toCh" value="1" id="°F">Fahrenheit<br>
+             <input type="radio" name="toCh" value="4" id="K">Kelvin<br>
+              <input type="radio" name="toCh" value="3" id="°R">Rankine<br>
+          </form></td>
+     
+  </tr>
+  
+      <!-- submit form -->
+      <tr>
+       <td colspan="20"align="left">   
+           <input type="button" id ="convert" value="Convert" name="Go" onClick="myCon()"></td> 
+         
+      </tr>
+      
+      <!-- Answer form -->
+      <tr>
+         
+      <td align="left" colspan="2" height="5"><input type="text" class="border" name ="answer"  size="60"></td>
+     
+      </tr>
+      
+   </table>
+                
+  </div>
+        </form>
+
+
+
+     
+ <footer>			
+   CS5560 - Homework 1 (Q2), Done By Kelvin Yap
+</footer>
+
+</div>
+    </body>
+</html>

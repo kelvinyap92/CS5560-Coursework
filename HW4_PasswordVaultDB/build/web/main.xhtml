@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="top">
+             Welcome User "#{javaBean.userName}" to your Password Vault!
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form rendered="#{javaBean.authenicated}">
+                        <h:commandLink value="LOGOUT" style="float:right" action="#{javaBean.logout()}"></h:commandLink>
+                        <h:dataTable value="#{vaultDAL.getAllVaults()}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Username"/>
+                                </f:facet>
+                                <h:outputLabel value="#{item.username}" />
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="URL"/>
+                                </f:facet>
+                                <h:outputLabel value="#{item.url}" />
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Password"/>
+                                </f:facet>
+                                <h:outputLabel value="#{item.password}" />
+                            </h:column>
+                            
+                             <h:column>
+                                <f:facet name="header">DELETE</f:facet>
+                                <h:commandButton value="Delete" action="#{vaultDAL.deleteVault(item.username)}">
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                        <br/>
+                        <h:outputLabel value="Username"></h:outputLabel>
+                        <h:inputText id="username" value="#{vaultDAL.username}" />
+                        <h:outputLabel value="URL"></h:outputLabel>
+                        <h:inputText id="url" value="#{vaultDAL.URL}" />
+                        <h:outputLabel value="Password"></h:outputLabel>
+                        <h:inputText id="password" value="#{vaultDAL.password}" />
+                        <h:commandButton id="submit" type="submit" value="ADD" action="#{vaultDAL.insertVault()}" />
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+           <h:outputLabel value="CS5560 - Homework 4, Done By Kelvin Yap"></h:outputLabel> 
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,63 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 7, 2014, 11:36:44 PM
+    Author     : KelvinYap
+*/
+
+
+  body footer {
+    font-family: 'Open Sans', sans-serif;
+    color: #ecf0f1;
+    text-align: center;
+    background: #68d68b;
+    height: 50px;
+    width:100%;
+    font-size: 20px;
+    line-height: 50px; 
+    position:absolute;
+    bottom: 0;
+  }
+  
+ /*Strike border line out */
+  .table>tbody>tr>th, .table>tbody>tr>td{
+      border-top: none;
+    
+  }
+ table {
+      width: 50%;
+      position: relative;
+  }
+  
+  #convert{
+      width: 30em;
+      height: 3em;
+  }
+  
+  #what{
+      width:20em;
+      height: 3em;
+      position: relative;
+      background-color:yellow;
+      
+  }
+  
+  input.border{
+      border:0;
+      text-align: center;
+      font-weight: bold;
+  }
+  
+  #title{
+      background-color: grey;
+      position:relative;
+      width: 30em;
+     }
+  #page{
+  margin-left:auto;
+  margin-right:auto;
+
+     }
